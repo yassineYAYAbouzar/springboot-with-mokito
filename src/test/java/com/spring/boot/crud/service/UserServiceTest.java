@@ -52,7 +52,7 @@ class UserServiceTest {
         assertThat(user.getAge()).isEqualTo(24);
         assertThat(user.getGender()).isEqualTo(MAMLE);
         assertThat(user.getEmail()).isEqualTo("yassine@gmail.com");
-        assertThat(user.getUserUid()).isNotNull();
+        assertThat(user.getUserUID()).isNotNull();
     }
 
     @Test
@@ -70,7 +70,7 @@ class UserServiceTest {
         assertThat(user.getAge()).isEqualTo(24);
         assertThat(user.getGender()).isEqualTo(MAMLE);
         assertThat(user.getEmail()).isEqualTo("yassine@gmail.com");
-        assertThat(user.getUserUid()).isNotNull();
+        assertThat(user.getUserUID()).isNotNull();
     }
 
     @Test
@@ -96,7 +96,7 @@ class UserServiceTest {
         assertThat(user.getAge()).isEqualTo(24);
         assertThat(user.getGender()).isEqualTo(MAMLE);
         assertThat(user.getEmail()).isEqualTo("yassine@gmail.com");
-        assertThat(user.getUserUid()).isNotNull();
+        assertThat(user.getUserUID()).isNotNull();
         assertThat(updateUSer).isEqualTo(1);
     }
 
@@ -134,7 +134,7 @@ class UserServiceTest {
         assertThat(user.getAge()).isEqualTo(24);
         assertThat(user.getGender()).isEqualTo(MAMLE);
         assertThat(user.getEmail()).isEqualTo("yassine@gmail.com");
-        assertThat(user.getUserUid()).isNotNull();
+        assertThat(user.getUserUID()).isNotNull();
         assertThat(insertUSer).isEqualTo(1);
     }
 }

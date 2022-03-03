@@ -31,7 +31,7 @@ class FakeDataDaoTest {
         assertThat(user.getAge()).isEqualTo(24);
         assertThat(user.getGender()).isEqualTo(MAMLE);
         assertThat(user.getEmail()).isEqualTo("yassine@gmail.com");
-        assertThat(user.getUserUid()).isNotNull();
+        assertThat(user.getUserUID()).isNotNull();
     }
 
     @Test
@@ -47,7 +47,7 @@ class FakeDataDaoTest {
 
     @Test
     void shouldUpdateUSer() {
-        UUID yassineUuid = fakeDataDao.selectAllUsers().get(0).getUserUid();
+        UUID yassineUuid = fakeDataDao.selectAllUsers().get(0).getUserUID();
         User hamza = new User(yassineUuid , "hamza", "bouzar", MAMLE, 22 , "hamza@gmal.com");
         fakeDataDao.updateUSer(hamza);
         Optional<User> user = fakeDataDao.selectUsers(yassineUuid);
@@ -58,7 +58,7 @@ class FakeDataDaoTest {
 
     @Test
     void shouldDeleteUSer() {
-        UUID yassineUid = fakeDataDao.selectAllUsers().get(0).getUserUid();
+        UUID yassineUid = fakeDataDao.selectAllUsers().get(0).getUserUID();
         fakeDataDao.deleteUSer(yassineUid);
         assertThat(fakeDataDao.selectAllUsers()).isEmpty();
         assertThat(fakeDataDao.selectUsers(yassineUid).isPresent()).isFalse();

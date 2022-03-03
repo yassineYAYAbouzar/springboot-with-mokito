@@ -29,7 +29,7 @@ public class FakeDataDao implements UserDao{
 
     @Override
     public int updateUSer(User user) {
-        database.put(user.getUserUid() , user);
+        database.put(user.getUserUID() , user);
         return 1;
     }
 

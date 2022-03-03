@@ -9,7 +9,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class User {
 
-    private  UUID userUid;
+    private  UUID userUID;
     private  String firstName;
     private  String lastName;
     private  Gender gender;
@@ -18,7 +18,7 @@ public class User {
 
 
     public User(UUID userUid, String firstName, String lastName, Gender gender, Integer age, String email) {
-        this.userUid = userUid;
+        this.userUID = userUid;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
