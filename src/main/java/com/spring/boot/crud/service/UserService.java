@@ -1,5 +1,6 @@
 package com.spring.boot.crud.service;
 
+import com.spring.boot.crud.dao.FakeDataDao;
 import com.spring.boot.crud.dao.UserDao;
 import com.spring.boot.crud.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.UUID;
 public class UserService {
     private UserDao userDao;
     @Autowired
-    public UserService(){
+    public UserService(FakeDataDao userDao){
         this.userDao =userDao;
     }
 
