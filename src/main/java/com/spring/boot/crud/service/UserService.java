@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
 @Service
 public class UserService {
     private UserDao userDao;
@@ -17,8 +20,19 @@ public class UserService {
         this.userDao =userDao;
     }
 
-    public List<User> getAllUsers() {
-        return userDao.selectAllUsers();
+    public List<User> getAllUsers(Optional<String> gender) {
+        List<User> users = userDao.selectAllUsers();
+        if(!gender.isPresent()){
+            return users;
+        }
+        try {
+            User.Gender theGender = User.Gender.valueOf(gender.get());
+           return users.stream()
+                    .filter(user -> user.getGender().equals(theGender))
+                    .collect(Collectors.toList());
+        }catch (Exception e){
+            throw new IllegalStateException("invalid gender" , e);
+        }
     }
 
     public Optional<User> getUsers(UUID userUID) {

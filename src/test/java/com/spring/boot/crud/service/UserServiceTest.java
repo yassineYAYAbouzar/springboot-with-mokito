@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static com.spring.boot.crud.model.User.Gender.FEMALE;
 import static com.spring.boot.crud.model.User.Gender.MAMLE;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -43,7 +44,7 @@ class UserServiceTest {
                 yassine
         );
         given(fakeDataDao.selectAllUsers()).willReturn(userImmutableList);
-        List<User> allUsers = userService.getAllUsers();
+        List<User> allUsers = userService.getAllUsers(Optional.empty());
 
         assertThat(allUsers).hasSize(1);
         User user = allUsers.get(0);
@@ -54,6 +55,33 @@ class UserServiceTest {
         assertThat(user.getEmail()).isEqualTo("yassine@gmail.com");
         assertThat(user.getUserUID()).isNotNull();
     }
+    @Test
+    void getAllUsersBygender() {
+        UUID yassineUUID = UUID.randomUUID();
+        User yassine = new User(yassineUUID,
+                "yassine", "bouzar", MAMLE,
+                24, "yassine@gmail.com");
+        UUID hamzaUUID = UUID.randomUUID();
+                User hamza = new User(hamzaUUID,
+                        "hamza", "bouzar", FEMALE,
+                        24, "yassine@gmail.com");
+        List<User> userImmutableList = List.of(
+                yassine,
+                hamza
+        );
+        given(fakeDataDao.selectAllUsers()).willReturn(userImmutableList);
+        List<User> filterallUsers = userService.getAllUsers(Optional.of("FEMALE"));
+
+        assertThat(filterallUsers).hasSize(1);
+        User user = filterallUsers.get(0);
+        assertThat(user.getFirstName()).isEqualTo("hamza");
+        assertThat(user.getLastName()).isEqualTo("bouzar");
+        assertThat(user.getAge()).isEqualTo(24);
+        assertThat(user.getGender()).isEqualTo(FEMALE);
+        assertThat(user.getEmail()).isEqualTo("yassine@gmail.com");
+        assertThat(user.getUserUID()).isNotNull();
+    }
+
 
     @Test
     void getUsers() {
